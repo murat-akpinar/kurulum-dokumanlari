@@ -1,1 +1,1 @@
-# Kurulum-Dok-manlar-
+Linux üzerine kurduğum servislerin kurulum adımları
