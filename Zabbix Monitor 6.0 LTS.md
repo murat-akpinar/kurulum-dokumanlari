@@ -81,7 +81,7 @@ localhost/zabbix adresine girdiğimizde bizi “Wellcome to Zabbix 6.0 “ ekran
 
 Configure DB Connection adımında “password” kısmına veri tabanı için verdiğimiz parolayı giriyoruz. “passw0rd“ 
 
-![Untitled](Zabbix%20Monitor%206%200%20LTS%2058ae75f97ea746b4b508b628170700f7/Untitled.png)
+![alt text](https://i.hizliresim.com/7hr6zdf.png)
 
 Eğer hiç bir sorun oluşmazsa “Congratulations! You have successfully installed Zabbix fronted” diyecektir.
 
@@ -98,6 +98,6 @@ Parolası : zabbix
 
 </aside>
 
-![Untitled](Zabbix%20Monitor%206%200%20LTS%2058ae75f97ea746b4b508b628170700f7/Untitled%201.png)
+![alt text](https://i.hizliresim.com/4o8ar6y.png)
 
-![Untitled](Zabbix%20Monitor%206%200%20LTS%2058ae75f97ea746b4b508b628170700f7/Untitled%202.png)
+![alt text](https://i.hizliresim.com/ear95h5.png)
