@@ -1,10 +1,5 @@
 # Zabbix Monitor 6.0 LTS
 
-Created: November 26, 2022 2:55 PM
-Etiket: Network Monitor
-Kaynak: https://www.zabbix.com/download
-Status: Complete 🙌
-
 # Zabbix Nedir
 
 Alexei Vladishev tarafından geliştirilen açık kaynaklı bir izleme yazılımdır. Bu yazılım sayesinde donanımları, servislerin durumlarını takip edebilir ve sorunları tespit edebilirsiniz.
