@@ -34,6 +34,7 @@ apt update
 
 </aside>
 
+
 **B ) Zabbix çalışması için gerekli paketlerin  kurulumu**;
 
 ```bash
