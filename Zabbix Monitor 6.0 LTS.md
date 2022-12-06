@@ -30,7 +30,7 @@ apt update
 
 <aside>
 ✨ apt update yaptığınızda;
-” [https://repo.zabbix.com/](https://repo.zabbix.com/zabbix-agent2-plugins/1/ubuntu) “ gibi ifadeler görmüyorsanız bu repo eklenmemiş demektir.
+”  https://repo.zabbix.com/ “ gibi ifadeler görmüyorsanız bu repo eklenmemiş demektir.
 
 </aside>
 
