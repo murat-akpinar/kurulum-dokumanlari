@@ -28,11 +28,7 @@ dpkg -i zabbix-release_6.0-4+ubuntu20.04_all.deb
 apt update
 ```
 
-<aside>
-✨ apt update yaptığınızda;
-”  https://repo.zabbix.com/ “ gibi ifadeler görmüyorsanız bu repo eklenmemiş demektir.
 
-</aside>
 
 
 **B ) Zabbix çalışması için gerekli paketlerin  kurulumu**;
