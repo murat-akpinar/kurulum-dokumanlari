@@ -34,7 +34,7 @@ apt update
 **B ) Zabbix çalışması için gerekli paketlerin  kurulumu**;
 
 ```bash
-apt -y install zabbix-server-pgsql zabbix-frontend-php php7.4-pgsql zabbix-apache-conf zabbix-sql-scripts zabbix-agent
+apt -y install zabbix-server-pgsql zabbix-frontend-php php7.4-pgsql zabbix-apache-conf zabbix-sql-scripts zabbix-agent apache2
 ```
 
 **C )** **Veri tabanı ayarları**
