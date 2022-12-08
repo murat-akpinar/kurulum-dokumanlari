@@ -20,7 +20,7 @@ Kuracağımız versiyon;
 
 # Kurulum
 
-**A ) ilk önce paket yöneticimize zabbix’in repolarını ekliyoruz.** 
+**A ) ilk önce zabbix 6.0 sürümünü indiriyoruz.** 
 
 ```bash
 wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4%2Bubuntu20.04_all.deb
