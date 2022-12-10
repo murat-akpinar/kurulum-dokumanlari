@@ -73,7 +73,7 @@ localhost/zabbix adresine girdiğimizde bizi “Wellcome to Zabbix 6.0 “ ekran
 
 Configure DB Connection adımında “password” kısmına veri tabanı için verdiğimiz parolayı giriyoruz. “passw0rd“ 
 
-![alt text](https://i.hizliresim.com/7hr6zdf.png)
+![alt text](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/zabbix1.png)
 
 Eğer hiç bir sorun oluşmazsa “Congratulations! You have successfully installed Zabbix fronted” diyecektir.
 
@@ -90,6 +90,6 @@ Parolası : zabbix
 
 </aside>
 
-![alt text](https://i.hizliresim.com/4o8ar6y.png)
+![alt text](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/zabbix2.png)
 
-![alt text](https://i.hizliresim.com/ear95h5.png)
+![alt text](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/zabbix3.png)
