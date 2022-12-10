@@ -134,7 +134,7 @@ systemctl enable node-exporter && systemctl start node-exporter && systemctl sta
 
 # 3 ) Grafana Kurulumu
 
-- İlk önce grana repolarını ekliyoruz
+- İlk önce Granafana repolarını ekliyoruz
 
 ```bash
 curl https://packages.grafana.com/gpg.key | sudo apt-key add -
