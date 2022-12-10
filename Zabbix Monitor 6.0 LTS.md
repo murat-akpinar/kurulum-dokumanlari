@@ -87,8 +87,9 @@ Parolası : zabbix
 
 <aside>
 ✨ ilk işiniz Administration/Users bölümünden Admin için varsayılan parolayı değiştirmelisiniz.
-
 </aside>
+
+
 
 ![alt text](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/zabbix2.png)
 
