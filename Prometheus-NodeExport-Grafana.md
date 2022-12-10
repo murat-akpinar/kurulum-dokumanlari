@@ -1,11 +1,3 @@
-# Prometheus & Grafana
-
-Created: November 30, 2022 3:18 PM
-Etiket: Network Monitor
-Kaynak: https://www.youtube.com/watch?v=4WWW2ZLEg74
-OS: Ubuntu
-Status: Test
-
 # Grafana Nedir
 
 Grafana; alınan tüm bilgileri görselleştirerek istenilen şekle sokar ve takip edilmesini ve okunmasını daha kolay hale getirir. Tablo şeklinde gördüğümüz tüm bilgiler, node_exporter tarafından elde ettiğimiz bilgilerdir.
