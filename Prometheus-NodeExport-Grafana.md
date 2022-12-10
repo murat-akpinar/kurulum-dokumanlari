@@ -81,7 +81,7 @@ systemctl enable prometheus && systemctl start prometheus && systemctl status pr
 
 Eğer bir problem olmazsa “ systemctl status prometheus “ komutu ile kontrol edebilir ve ya tarayıcımızdan 192.168.1.200:9090 adresine gittiğimizde menü çubuğundan Status altında target bölümünden de bakabiliriz.
 
-![Untitled](Prometheus%20&%20Grafana%20e970e32886fe466082d0031432a8342f/Untitled.png)
+![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/prometheus1.png)
 
 ## 2 ) Node_Exporter Kurulumu
 
@@ -138,7 +138,7 @@ systemctl enable node-exporter && systemctl start node-exporter && systemctl sta
 
 Tekrar “http://192.168.1.200:9090/targets?search=” adresine gittiğimizde prometheus ve node_exporteri görebileceğiz.
 
-![Untitled](Prometheus%20&%20Grafana%20e970e32886fe466082d0031432a8342f/Untitled%201.png)
+![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/promet-node.png)
 
 # 3 ) Grafana Kurulumu
 
@@ -156,7 +156,7 @@ apt update -y
 
 ```
 
-![Untitled](Prometheus%20&%20Grafana%20e970e32886fe466082d0031432a8342f/Untitled%202.png)
+![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana1.png)
 
 Burada “packages.grafana” eklendiğini görebiliyoruz repomuz eklendi ve güncellendi. Şimdi kurabiliriz.
 
@@ -190,34 +190,34 @@ password : admin
 
 “ http://192.168.1.200:3000 “ adresine gittiğimizde bizi grafana login ekranı karşılayacak ön tanımlı isim ve parola ile giriş yaptıktan sonra direkt olarak yeni bir şifre oluşturmanızı isteyecektir.
 
-![Untitled](Prometheus%20&%20Grafana%20e970e32886fe466082d0031432a8342f/Untitled%203.png)
+![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana2.png)
 
 # 3.b ) Grafana Ayarları
 
 Sol menüden “ Configuration ” sekmesinden “ Data Sources “ bölümüne geliyoruz.
 
-![Untitled](Prometheus%20&%20Grafana%20e970e32886fe466082d0031432a8342f/Untitled%204.png)
+![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana3.png)
 
 Add data source tıkladığımızda  “ Prometheus ” seçiyoruz.
 
-![Untitled](Prometheus%20&%20Grafana%20e970e32886fe466082d0031432a8342f/Untitled%205.png)
+![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana4.png)
 
 Bu bölümde sunucumuzun ip adresini (http://192.168.1.200:9090) ve prometheus portunu ekliyoruz. Save & test diyoruz. 
 
-![Untitled](Prometheus%20&%20Grafana%20e970e32886fe466082d0031432a8342f/Untitled%206.png)
+![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana5.png)
 
 Sonra “ Dashboards ” menüsünün altında “ Import “  sayfasına tıklıyoruz.
 
-![Untitled](Prometheus%20&%20Grafana%20e970e32886fe466082d0031432a8342f/Untitled%207.png)
+![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana6.png)
 
 Import via grafana.com bölümüne “ 14513 “ yazıyor ve load diyoruz.
 
 Bu eklediğimiz numaralar aslında önceden oluşturulmuş Dashboard grafik şemalarıdır. Daha fazlası için “ [https://grafana.com/grafana/dashboards/](https://grafana.com/grafana/dashboards/) “ adresinden bakabilirsiniz.
 
-![Untitled](Prometheus%20&%20Grafana%20e970e32886fe466082d0031432a8342f/Untitled%208.png)
+![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana7.png)
 
 Premetheus seçip import diyoruz.
 
-![Untitled](Prometheus%20&%20Grafana%20e970e32886fe466082d0031432a8342f/Untitled%209.png)
+![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana8.png)
 
 Artık sistemimizin durumunu grafana üzerinden takip edip kontrol edebiliriz.
