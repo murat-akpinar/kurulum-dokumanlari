@@ -24,7 +24,7 @@ Kuracağımız versiyon;
 
 # Kurulum
 
-İlk olarak sistemimizi güncelliyoruz
+- İlk olarak sistemimizi güncelliyoruz
 
 ```bash
 apt update && apt upgrade -y
@@ -32,27 +32,27 @@ apt update && apt upgrade -y
 
 ## 1 ) Prometheus Kurulumu
 
-[https://prometheus.io/download/](https://prometheus.io/download/) sitesinden **Prometheus 2.37.4 Linux LTS** sürümünü indirmemiz gerekiyor. Seçtiğimiz sürümün üstüne sağ tıklayıp “Bağlantı Adresini Kopyala” dediğimizde indirme linkini elde edeceğiz.
+- [https://prometheus.io/download/](https://prometheus.io/download/) sitesinden **Prometheus 2.37.4 Linux LTS** sürümünü indirmemiz gerekiyor. Seçtiğimiz sürümün üstüne sağ tıklayıp “Bağlantı Adresini Kopyala” dediğimizde indirme linkini elde edeceğiz.
 
 ```bash
 curl -L -O https://github.com/prometheus/prometheus/releases/download/v2.37.4/prometheus-2.37.4.linux-amd64.tar.gz
 ```
 
-İndirdiğimiz dosyayı tar komutu ile “/usr/local/bin” çıkartıyoruz. Sonra prometheus dizininin içine taşıyoruz.
+- İndirdiğimiz dosyayı tar komutu ile “/usr/local/bin” çıkartıyoruz. Sonra prometheus dizininin içine taşıyoruz.
 
 ```bash
 tar xvfz prometheus-2.37.4.linux-amd64.tar.gz -C /usr/local/bin
 mv /usr/local/bin/prometheus-2.37.4.linux-amd64 /usr/local/bin/prometheus
 ```
 
-prometheus.yml dosyasında ki localhost bölümünü kendi sanal makinamın ip ile değiştiriyorum.
+- prometheus.yml dosyasında ki localhost bölümünü kendi sanal makinamın ip ile değiştiriyorum.
 
 ```bash
 sed -i s/"localhost:9090"/"192.168.1.200:9090"/g /usr/local/bin/prometheus/prometheus.yml
 
 ```
 
-/etc/systemd/system/ dizinin içine “ prometheus.service ” dosyasını oluşturuyoruz. Böylece sistem prometheus servisini tanıyabilecek.
+- /etc/systemd/system/ dizinin içine “ prometheus.service ” dosyasını oluşturuyoruz. Böylece sistem prometheus servisini tanıyabilecek.
 
 ```bash
 cat << EOF > /etc/systemd/system/prometheus.service
@@ -67,38 +67,38 @@ WantedBy=multi-user.target
 EOF
 ```
 
-Güvenlik duvarından 9090 portuna izin veriyoruz.
+- Güvenlik duvarından 9090 portuna izin veriyoruz.
 
 ```bash
 ufw allow 9090/tcp && ufw status
 ```
 
-Prometheus servisini sistem açılışında otomatik olarak başlaması için “ enable “. Servisi başlatmak için “ start “. Servisin durumunu görmek için “ status “ komutunu kullanıyoruz.
+- Prometheus servisini sistem açılışında otomatik olarak başlaması için “ enable “. Servisi başlatmak için “ start “. Servisin durumunu görmek için “ status “ komutunu kullanıyoruz.
 
 ```bash
 systemctl enable prometheus && systemctl start prometheus && systemctl status prometheus
 ```
 
-Eğer bir problem olmazsa “ systemctl status prometheus “ komutu ile kontrol edebilir ve ya tarayıcımızdan 192.168.1.200:9090 adresine gittiğimizde menü çubuğundan Status altında target bölümünden de bakabiliriz.
+- Eğer bir problem olmazsa “ systemctl status prometheus “ komutu ile kontrol edebilir ve ya tarayıcımızdan 192.168.1.200:9090 adresine gittiğimizde menü çubuğundan Status altında target bölümünden de bakabiliriz.
 
 ![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/prometheus1.png)
 
 ## 2 ) Node_Exporter Kurulumu
 
-[https://prometheus.io/download/](https://prometheus.io/download/) sitesinden node_exporter-1.5.0.linux-amd sürümünü indirmemiz gerekiyor. Seçtiğimiz sürümün üstüne sağ tıklayıp “Bağlantı Adresini Kopyala” dediğimizde indirme linkini elde edeceğiz.
+- [https://prometheus.io/download/](https://prometheus.io/download/) sitesinden node_exporter-1.5.0.linux-amd sürümünü indirmemiz gerekiyor. Seçtiğimiz sürümün üstüne sağ tıklayıp “Bağlantı Adresini Kopyala” dediğimizde indirme linkini elde edeceğiz.
 
 ```bash
 curl -L -O https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
 ```
 
-İndirdiğimiz dosyayı tar komutu ile “/usr/local/bin” çıkartıyoruz. Sonra prometheus dizininin içine taşıyoruz.
+- İndirdiğimiz dosyayı tar komutu ile “/usr/local/bin” çıkartıyoruz. Sonra prometheus dizininin içine taşıyoruz.
 
 ```bash
 tar -xvzf node_exporter-1.5.0.linux-amd64.tar.gz -C /usr/local/bin/
 mv /usr/local/bin/node_exporter-1.5.0.linux-amd64 /usr/local/bin/node_exporter
 ```
 
-/etc/systemd/system/ dizinin içine “ node-exporter.service ” dosyasını oluşturuyoruz. Böylece sistem node-exporter servisini tanıyabilecek.
+- /etc/systemd/system/ dizinin içine “ node-exporter.service ” dosyasını oluşturuyoruz. Böylece sistem node-exporter servisini tanıyabilecek.
 
 ```bash
 cat << EOF > /etc/systemd/system/node-exporter.service
@@ -113,7 +113,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-/usr/local/bin/prometheus/prometheus.yml dosyasının içini tercih etiğiniz text editör ile node_exporter’i ekliyoruz.
+- /usr/local/bin/prometheus/prometheus.yml dosyasının içini tercih etiğiniz text editör ile node_exporter’i ekliyoruz.
 
 ```bash
 cat << EOF >> /usr/local/bin/prometheus/prometheus.yml
@@ -124,32 +124,32 @@ cat << EOF >> /usr/local/bin/prometheus/prometheus.yml
 EOF
 ```
 
-Güvenlik duvarından 9090 portuna izin veriyoruz.
+- Güvenlik duvarından 9090 portuna izin veriyoruz.
 
 ```bash
 ufw allow 9100/tcp && ufw status
 ```
 
-node-exporter servisini sistem açılışında otomatik olarak başlaması için “ enable “. Servisi başlatmak için “ start “. Servisin durumunu görmek için “ status “ komutunu kullanıyoruz.
+- node-exporter servisini sistem açılışında otomatik olarak başlaması için “ enable “. Servisi başlatmak için “ start “. Servisin durumunu görmek için “ status “ komutunu kullanıyoruz.
 
 ```bash
 systemctl enable node-exporter && systemctl start node-exporter && systemctl status node-exporter
 ```
 
-Tekrar “http://192.168.1.200:9090/targets?search=” adresine gittiğimizde prometheus ve node_exporteri görebileceğiz.
+- Tekrar “http://192.168.1.200:9090/targets?search=” adresine gittiğimizde prometheus ve node_exporteri görebileceğiz.
 
 ![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/promet-node.png)
 
 # 3 ) Grafana Kurulumu
 
-İlk önce grana repolarını ekliyoruz
+- İlk önce grana repolarını ekliyoruz
 
 ```bash
 curl https://packages.grafana.com/gpg.key | sudo apt-key add -
 add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
 ```
 
-Sonra repomuzu güncelliyoruz ve grafana paketlerini kontrol edeceğiz
+- Sonra repomuzu güncelliyoruz ve grafana paketlerini kontrol edeceğiz
 
 ```bash
 apt update -y
@@ -158,25 +158,25 @@ apt update -y
 
 ![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana1.png)
 
-Burada “packages.grafana” eklendiğini görebiliyoruz repomuz eklendi ve güncellendi. Şimdi kurabiliriz.
+- Burada “packages.grafana” eklendiğini görebiliyoruz repomuz eklendi ve güncellendi. Şimdi kurabiliriz.
 
 ```bash
 apt install grafana -y
 ```
 
-Kurulumdan sonra daemon-reload ile sistem dosyalarını yeniden yüklüyoruz
+- Kurulumdan sonra daemon-reload ile sistem dosyalarını yeniden yüklüyoruz
 
 ```bash
 systemctl daemon-reload
 ```
 
-Güvenlik duvarından 3000 portuna izin veriyoruz.
+- Güvenlik duvarından 3000 portuna izin veriyoruz.
 
 ```bash
 ufw allow 3000/tcp && ufw status
 ```
 
-Grafana servislerini başlatıyoruz ve sunucu yeniden başladığında otomatik olarak grafana servisinin başlaması için “ enable “ yazıyoruz ve status ile servisin durumunu kontrol ediyoruz
+- Grafana servislerini başlatıyoruz ve sunucu yeniden başladığında otomatik olarak grafana servisinin başlaması için “ enable “ yazıyoruz ve status ile servisin durumunu kontrol ediyoruz
 
 ```bash
 systemctl start grafana-server && systemctl enable grafana-server && systemctl status grafana-server
@@ -188,36 +188,36 @@ Username : admin
 
 password : admin
 
-“ http://192.168.1.200:3000 “ adresine gittiğimizde bizi grafana login ekranı karşılayacak ön tanımlı isim ve parola ile giriş yaptıktan sonra direkt olarak yeni bir şifre oluşturmanızı isteyecektir.
+- “ http://192.168.1.200:3000 “ adresine gittiğimizde bizi grafana login ekranı karşılayacak ön tanımlı isim ve parola ile giriş yaptıktan sonra direkt olarak yeni bir şifre oluşturmanızı isteyecektir.
 
 ![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana2.png)
 
 # 3.b ) Grafana Ayarları
 
-Sol menüden “ Configuration ” sekmesinden “ Data Sources “ bölümüne geliyoruz.
+- Sol menüden “ Configuration ” sekmesinden “ Data Sources “ bölümüne geliyoruz.
 
 ![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana3.png)
 
-Add data source tıkladığımızda  “ Prometheus ” seçiyoruz.
+- Add data source tıkladığımızda  “ Prometheus ” seçiyoruz.
 
 ![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana4.png)
 
-Bu bölümde sunucumuzun ip adresini (http://192.168.1.200:9090) ve prometheus portunu ekliyoruz. Save & test diyoruz. 
+- Bu bölümde sunucumuzun ip adresini (http://192.168.1.200:9090) ve prometheus portunu ekliyoruz. Save & test diyoruz. 
 
 ![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana5.png)
 
-Sonra “ Dashboards ” menüsünün altında “ Import “  sayfasına tıklıyoruz.
+- Sonra “ Dashboards ” menüsünün altında “ Import “  sayfasına tıklıyoruz.
 
 ![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana6.png)
 
-Import via grafana.com bölümüne “ 14513 “ yazıyor ve load diyoruz.
+- Import via grafana.com bölümüne “ 14513 “ yazıyor ve load diyoruz.
 
-Bu eklediğimiz numaralar aslında önceden oluşturulmuş Dashboard grafik şemalarıdır. Daha fazlası için “ [https://grafana.com/grafana/dashboards/](https://grafana.com/grafana/dashboards/) “ adresinden bakabilirsiniz.
+- Bu eklediğimiz numaralar aslında önceden oluşturulmuş Dashboard grafik şemalarıdır. Daha fazlası için “ [https://grafana.com/grafana/dashboards/](https://grafana.com/grafana/dashboards/) “ adresinden bakabilirsiniz.
 
 ![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana7.png)
 
-Premetheus seçip import diyoruz.
+- Premetheus seçip import diyoruz.
 
 ![Untitled](https://raw.githubusercontent.com/Shyuuhei/kurulum-dokumanlari/main/images/grafana8.png)
 
-Artık sistemimizin durumunu grafana üzerinden takip edip kontrol edebiliriz.
+- Artık sistemimizin durumunu grafana üzerinden takip edip kontrol edebiliriz.
