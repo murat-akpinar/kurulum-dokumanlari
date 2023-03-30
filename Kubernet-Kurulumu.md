@@ -142,7 +142,7 @@ isteğe bağlı olarak bu paketlerin güncellemerlini kapataibliriz.
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-Buraya dikakt bu adım sadece **master-node** için uygulanacak adımlardır. Bu işlem biraz zaman alabilir.
+Buraya dikakt buradan sonra ki adımlar sadece master-node için uygulanacak adımlardır.
 
 ```bash
 sudo kubeadm config images pull
