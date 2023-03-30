@@ -1,9 +1,5 @@
 # Kubernet Kurulumu
 
-Created: March 30, 2023 4:42 PM
-OS: Debian
-Status: Test
-
 İlk önce bize iki tane biri master biri worker olacak şekilde birer makine lazım. Ben ubuntu 20.04 LTS üzerine bunu yapacağım.
 
 Bu adımları her iki sistemde uyguluyoruz.
