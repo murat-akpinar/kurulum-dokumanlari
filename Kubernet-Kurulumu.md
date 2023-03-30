@@ -96,7 +96,7 @@ EOF
 sudo sysctl --system
 ```
 
-Kurulum için ilk önce paketleri güncelliyoruz. Unutmayın her iki sistemde uyguluyoruz bunları.
+her iki sistem için kurulum için ilk önce paketleri güncelliyoruz. Unutmayın her iki sistemde uyguluyoruz bunları.
 
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y
@@ -106,13 +106,13 @@ sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install containerd -y
 ```
 
-Containerd kurulduktan sonra bir dizin oluşturuyoruz
+her iki sistem için containerd kurulduktan sonra bir dizin oluşturuyoruz
 
 ```bash
 sudo mkdir -p /etc/containerd
 ```
 
-root kullanıcısına geçiyoruz ve bu adımı uyguluyoruz. Bu işlemi uyguladıktan sonra root kulanıcısında kalmaya gerek kalmıyor. Normal kullanıcıya geçmeyi unutmayın!
+her iki sistem için root kullanıcısına geçiyoruz ve bu adımı uyguluyoruz. Bu işlemi uyguladıktan sonra root kulanıcısında kalmaya gerek kalmıyor. Normal kullanıcıya geçmeyi unutmayın!
 
 ```bash
 containerd config default | tee /etc/containerd/config.toml
@@ -120,7 +120,7 @@ sudo systemctl restart containerd
 
 ```
 
-kubeadm kurulumu için repolarımıza kubernet ekliyoruz.
+her iki sistem için kubeadm kurulumu için repolarımıza kubernet ekliyoruz.
 
 ```bash
 sudo apt-get update
@@ -129,14 +129,14 @@ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://pack
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
-Sonra tekrar repoları güncelleyip yükleme işlemine geçiyoruz.
+her iki sistem için sonra tekrar repoları güncelleyip yükleme işlemine geçiyoruz.
 
 ```bash
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 ```
 
-isteğe bağlı olarak bu paketlerin güncellemerlini kapataibliriz. 
+her iki sistem için isteğe bağlı olarak bu paketlerin güncellemerlini kapataibliriz. 
 
 ```bash
 sudo apt-mark hold kubelet kubeadm kubectl
