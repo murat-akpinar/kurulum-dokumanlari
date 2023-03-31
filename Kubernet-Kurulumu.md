@@ -4,21 +4,21 @@
 
 Bu adımları her iki sistemde uyguluyoruz.
 
-Bunu master olarak kullacağımız sisteme yazıyoruz.
+#### Bunu master olarak kullacağımız sisteme yazıyoruz. ####
 
 ```bash
 sudo hostnamectl set-hostname master-node
 exec bash
 ```
-
-Bunu worker olacak diğer sistemimize yazıyoruz.
+---
+#### Bunu worker olacak diğer sistemimize yazıyoruz. ####
 
 ```bash
 sudo hostnamectl set-hostname worker-node
 exec bash
 ```
-
-**master-node** için güvenlik duvarı ayarları
+---
+#### **master-node** için güvenlik duvarı ayarları ####
 
 ```bash
 sudo systemctl enable ufw && sudo systemctl start ufw
@@ -36,8 +36,9 @@ sudo ufw allow 10255/tcp
 sudo ufw allow 10250/tcp
 sudo ufw reload
 ```
+---
 
-**worker-node** için güvenlik duvarı ayarları
+#### **worker-node** için güvenlik duvarı ayarları ####
 
 ```bash
 sudo systemctl enable ufw && sudo systemctl start ufw
@@ -49,18 +50,15 @@ sudo ufw allow 10250/tcp
 sudo ufw allow 30000:32767/tcp
 sudo ufw reload
 ```
+---
 
-<br></br>
-Her iki sistem için sawp alanlarını kapatıyoruz
-
+#### Her iki sistem için swap alanlarını kapatıyoruz ####
 ```bash
 sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
-
-<br></br>
-her iki sistem için iptables bridged ayarları
-
+---
+#### her iki sistem için iptables bridged ayarları ####
 ```bash
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
@@ -74,8 +72,8 @@ EOF
 sudo sysctl --system
 ```
 
-<br></br>
-her iki sistem için containerd kurulumu
+---
+#### her iki sistem için containerd kurulumu ####
 
 ```bash
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
@@ -99,8 +97,8 @@ EOF
 sudo sysctl --system
 ```
 
-<br></br>
-her iki sistem için kurulum için ilk önce paketleri güncelliyoruz. Unutmayın her iki sistemde uyguluyoruz bunları.
+---
+#### her iki sistem için kurulum için ilk önce paketleri güncelliyoruz. Unutmayın her iki sistemde uyguluyoruz bunları. ####
 
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y
@@ -110,16 +108,16 @@ sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install containerd -y
 ```
 
-<br></br>
-her iki sistem için containerd kurulduktan sonra bir dizin oluşturuyoruz
+---
+#### her iki sistem için containerd kurulduktan sonra bir dizin oluşturuyoruz ####
 
 ```bash
 sudo mkdir -p /etc/containerd
 ```
 
-<br></br>
-her iki sistem için root kullanıcısına geçiyoruz ve bu adımı uyguluyoruz. Bu işlemi uyguladıktan sonra root kullanıcısından çıkın. 
-Normal kullanıcıya geçmeyi unutmayın!
+---
+#### her iki sistem için root kullanıcısına geçiyoruz ve bu adımı uyguluyoruz. Bu işlemi uyguladıktan sonra root kullanıcısından çıkın. 
+Normal kullanıcıya geçmeyi unutmayın! ####
 
 ```bash
 su - root
@@ -128,8 +126,8 @@ sudo systemctl restart containerd
 exit
 ```
 
-<br></br>
-her iki sistem için kubeadm kurulumu için repolarımıza kubernet ekliyoruz.
+---
+#### her iki sistem için kubeadm kurulumu için repolarımıza kubernet ekliyoruz. ####
 
 ```bash
 sudo apt-get update
@@ -138,34 +136,34 @@ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://pack
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
-<br></br>
-her iki sistem için sonra tekrar repoları güncelleyip yükleme işlemine geçiyoruz.
+---
+#### her iki sistem için sonra tekrar repoları güncelleyip yükleme işlemine geçiyoruz. ####
 
 ```bash
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 ```
 
-<br></br>
-her iki sistem için isteğe bağlı olarak bu paketlerin güncellemerlini kapataibliriz. 
+---
+#### her iki sistem için isteğe bağlı olarak bu paketlerin güncellemerlini kapataibliriz. ####
 
 ```bash
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
-<br></br>
+---
 
 # Buraya dikakt buradan sonra ki adımlar sadece master-node için uygulanacak adımlardır. #
 ```bash
 sudo kubeadm config images pull
 ```
 
-<br></br>
+---
 Ondan sonra sisteme master nod olarak ekliyoruz. “192.168.1.200” Bu kısma kendi master-node makinenizin ip adresini girmeniz gerekiyor.
 ```bash
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=192.168.1.200 --control-plane-endpoint=192.168.1.200
 ```
 
-<br></br>
+---
 Bu işlemi ardından eğer kurulum başarılı olduysa bu ekran sizi karşılayacak. 
 ```bash
 Your Kubernetes control-plane has initialized successfully!
@@ -197,7 +195,7 @@ kubeadm join 192.168.1.200:6443 --token 3qr4l6.41gcohu09570pu2b \
         --discovery-token-ca-cert-hash sha256:c61dd1a8c531adc26e5a84d066cc02a320ce9f90069ba4d502428abe07acc43a
 ```
 
-<br></br>
+---
 Buradan sonra gene master-node sisteminde bu adımları uygulacağız.
 ```bash
 mkdir -p $HOME/.kube
@@ -205,27 +203,27 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-<br></br>
+---
 Ardından bu iki komutu çalıştıyoruz.
 ```bash
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-resources.yaml
 ```
 
-<br></br>
+---
 Burada diğer önemli olan “kubeadm join” kısmı bu kısmı **worker-node** yazıyoruz.
 ```bash
 sudo kubeadm join 192.168.1.200:6443 --token 3qr4l6.41gcohu09570pu2b \
         --discovery-token-ca-cert-hash sha256:c61dd1a8c531adc26e5a84d066cc02a320ce9f90069ba4d502428abe07acc43a
 ```
 
-<br></br>
+---
 Eğer join tokeninizi kaybederseniz tekrar üretmeniz için bu komutu kullanabilirsiniz.
 ```
 sudo kubeadm token create --print-join-command
 ```
 
-<br></br>
+---
 Ardından nodları görmek için bu çıktıyı alırız.
 
 ```bash
@@ -235,8 +233,8 @@ master-node   Ready    control-plane   101m   v1.26.3
 worker-node   Ready    <none>          94m    v1.26.3
 ```
 
-<br></br>
-# **ÖNEMLİ NOT:**
+---
+# **ÖNEMLİ NOT:** #
 
 “kubectl get nodes” yazdığınızda böyle bir hata alıyorsanız.
 
@@ -251,5 +249,6 @@ exit
 strace -eopenat kubectl version
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
-
 kaynak : [https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/5](https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/5)
+
+---
