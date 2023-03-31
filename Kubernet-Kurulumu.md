@@ -238,7 +238,7 @@ worker-node   Ready    <none>          94m    v1.26.3
 <br></br>
 # **ÖNEMLİ NOT:**
 
-eğer master-node makinesini kaptıp tekrar açtıysanız “kubectl get nodes” yazdığınızda hata alabilirsiniz.
+“kubectl get nodes” yazdığınızda böyle bir hata alıyorsanız.
 
 “The connection to the server 192.168.1.200:6443 was refused - did you specify the right host or port?”
 
@@ -249,6 +249,7 @@ sudo -i
 swapoff -a
 exit
 strace -eopenat kubectl version
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
 
 kaynak : [https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/5](https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/5)
