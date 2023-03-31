@@ -240,7 +240,7 @@ worker-node   Ready    <none>          94m    v1.26.3
 
 “The connection to the server 192.168.1.200:6443 was refused - did you specify the right host or port?”
 
-bu hatayı alırsanız yapanız sırasıyla yapmanız gerekenler bu adımlardır.
+Bu hatanın sebebi sanırım swap alanı ile ilgili. bu hatayı alırsanız yapanız sırasıyla yapmanız gerekenler bu adımlardır.
 
 ```bash
 sudo -i
