@@ -205,7 +205,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 ---
-Ardından bu iki komutu çalıştıyoruz.
+Bu komutları **master-node** çalıştıyoruz.
 ```bash
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-resources.yaml
@@ -225,7 +225,7 @@ sudo kubeadm token create --print-join-command
 ```
 
 ---
-Ardından nodları görmek için "kubectl get nodes" komutu kullanıyoruz ve bu çıktıyı alıyorsak her şey yolunda.
+Nodları görmek için "kubectl get nodes" komutu kullanıyoruz ve bu çıktıyı alıyorsak her şey yolunda.
 
 ```bash
 user@master-node:~$ kubectl get nodes
