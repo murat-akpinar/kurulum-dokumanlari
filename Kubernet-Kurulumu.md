@@ -50,6 +50,7 @@ sudo ufw allow 30000:32767/tcp
 sudo ufw reload
 ```
 
+<br></br>
 Her iki sistem için sawp alanlarını kapatıyoruz
 
 ```bash
@@ -57,6 +58,7 @@ sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
 
+<br></br>
 her iki sistem için iptables bridged ayarları
 
 ```bash
@@ -72,6 +74,7 @@ EOF
 sudo sysctl --system
 ```
 
+<br></br>
 her iki sistem için containerd kurulumu
 
 ```bash
@@ -96,6 +99,7 @@ EOF
 sudo sysctl --system
 ```
 
+<br></br>
 her iki sistem için kurulum için ilk önce paketleri güncelliyoruz. Unutmayın her iki sistemde uyguluyoruz bunları.
 
 ```bash
@@ -106,12 +110,14 @@ sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install containerd -y
 ```
 
+<br></br>
 her iki sistem için containerd kurulduktan sonra bir dizin oluşturuyoruz
 
 ```bash
 sudo mkdir -p /etc/containerd
 ```
 
+<br></br>
 her iki sistem için root kullanıcısına geçiyoruz ve bu adımı uyguluyoruz. Bu işlemi uyguladıktan sonra root kullanıcısından çıkın. 
 Normal kullanıcıya geçmeyi unutmayın!
 
@@ -121,6 +127,7 @@ sudo systemctl restart containerd
 
 ```
 
+<br></br>
 her iki sistem için kubeadm kurulumu için repolarımıza kubernet ekliyoruz.
 
 ```bash
@@ -130,6 +137,7 @@ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://pack
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
+<br></br>
 her iki sistem için sonra tekrar repoları güncelleyip yükleme işlemine geçiyoruz.
 
 ```bash
@@ -137,13 +145,17 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 ```
 
+
 her iki sistem için isteğe bağlı olarak bu paketlerin güncellemerlini kapataibliriz. 
 
 ```bash
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
+<br></br>
 
 Buraya dikakt buradan sonra ki adımlar sadece master-node için uygulanacak adımlardır.
+<br></br>
+
 
 ```bash
 sudo kubeadm config images pull
@@ -208,7 +220,14 @@ Burada diğer önemli olan “kubeadm join” kısmı bu kısmı **worker-node**
 sudo kubeadm join 192.168.1.200:6443 --token 3qr4l6.41gcohu09570pu2b \
         --discovery-token-ca-cert-hash sha256:c61dd1a8c531adc26e5a84d066cc02a320ce9f90069ba4d502428abe07acc43a
 ```
+<br></br>
 
+Eğer join tokeninizi kaybederseniz tekrar üretmeniz için bu komutu kullanabilirsiniz.
+```
+sudo kubeadm token create --print-join-command
+```
+
+<br></br>
 Ardından nodları görmek için bu çıktıyı alırız.
 
 ```bash
