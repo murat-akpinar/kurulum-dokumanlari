@@ -44,7 +44,7 @@ sudo ufw reload
 sudo systemctl enable ufw && sudo systemctl start ufw
 sudo ufw enable
 
-sudo ufw allow 22/tcp # 22 Port SSH için
+sudo ufw allow 22/tcp
 sudo ufw allow 10248/tcp
 sudo ufw allow 10250/tcp
 sudo ufw allow 30000:32767/tcp
