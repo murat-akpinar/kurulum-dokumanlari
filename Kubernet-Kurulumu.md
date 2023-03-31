@@ -1,6 +1,6 @@
 # Kubernet Kurulumu
 
-İlk önce bize iki tane biri master biri worker olacak şekilde birer makine lazım. Ben ubuntu 20.04 LTS üzerine bunu yapacağım.
+İlk önce bize iki tane biri master biri worker olacak şekilde birer makine lazım. Virtualbox üzerine iki tane ubuntu 20.04 LTS kurdum. 
 
 Bu adımları her iki sistemde uyguluyoruz.
 
