@@ -112,7 +112,8 @@ her iki sistem için containerd kurulduktan sonra bir dizin oluşturuyoruz
 sudo mkdir -p /etc/containerd
 ```
 
-her iki sistem için root kullanıcısına geçiyoruz ve bu adımı uyguluyoruz. Bu işlemi uyguladıktan sonra root kulanıcısında kalmaya gerek kalmıyor. Normal kullanıcıya geçmeyi unutmayın!
+her iki sistem için root kullanıcısına geçiyoruz ve bu adımı uyguluyoruz. Bu işlemi uyguladıktan sonra root kullanıcısından çıkın. 
+Normal kullanıcıya geçmeyi unutmayın!
 
 ```bash
 containerd config default | tee /etc/containerd/config.toml
