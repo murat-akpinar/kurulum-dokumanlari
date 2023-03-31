@@ -122,9 +122,10 @@ her iki sistem için root kullanıcısına geçiyoruz ve bu adımı uyguluyoruz.
 Normal kullanıcıya geçmeyi unutmayın!
 
 ```bash
+su - root
 containerd config default | tee /etc/containerd/config.toml
 sudo systemctl restart containerd
-
+exit
 ```
 
 <br></br>
