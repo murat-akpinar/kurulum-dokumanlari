@@ -224,7 +224,7 @@ sudo kubeadm token create --print-join-command
 ```
 
 ---
-Ardından nodları görmek için bu çıktıyı alırız.
+Ardından nodları görmek için "kubectl get nodes" komutu kullanıyoruz ve bu çıktıyı alıyorsak her şey yolunda.
 
 ```bash
 user@master-node:~$ kubectl get nodes
