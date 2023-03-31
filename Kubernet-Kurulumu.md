@@ -248,7 +248,7 @@ sudo -i
 swapoff -a
 exit
 strace -eopenat kubectl version
-sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo sed -i s/"[/]swap"/"#swap"/g /etc/fstab
 ```
 kaynak : [https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/5](https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/5)
 
