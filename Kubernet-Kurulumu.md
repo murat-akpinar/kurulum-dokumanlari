@@ -146,7 +146,7 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 ```
 
-
+<br></br>
 her iki sistem için isteğe bağlı olarak bu paketlerin güncellemerlini kapataibliriz. 
 
 ```bash
@@ -154,22 +154,19 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ```
 <br></br>
 
-Buraya dikakt buradan sonra ki adımlar sadece master-node için uygulanacak adımlardır.
-<br></br>
-
-
+# Buraya dikakt buradan sonra ki adımlar sadece master-node için uygulanacak adımlardır. #
 ```bash
 sudo kubeadm config images pull
 ```
 
+<br></br>
 Ondan sonra sisteme master nod olarak ekliyoruz. “192.168.1.200” Bu kısma kendi master-node makinenizin ip adresini girmeniz gerekiyor.
-
 ```bash
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=192.168.1.200 --control-plane-endpoint=192.168.1.200
 ```
 
+<br></br>
 Bu işlemi ardından eğer kurulum başarılı olduysa bu ekran sizi karşılayacak. 
-
 ```bash
 Your Kubernetes control-plane has initialized successfully!
 
@@ -200,29 +197,29 @@ kubeadm join 192.168.1.200:6443 --token 3qr4l6.41gcohu09570pu2b \
         --discovery-token-ca-cert-hash sha256:c61dd1a8c531adc26e5a84d066cc02a320ce9f90069ba4d502428abe07acc43a
 ```
 
+<br></br>
 Buradan sonra gene master-node sisteminde bu adımları uygulacağız.
-
 ```bash
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
+<br></br>
 Ardından bu iki komutu çalıştıyoruz.
-
 ```bash
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-resources.yaml
 ```
 
+<br></br>
 Burada diğer önemli olan “kubeadm join” kısmı bu kısmı **worker-node** yazıyoruz.
-
 ```bash
 sudo kubeadm join 192.168.1.200:6443 --token 3qr4l6.41gcohu09570pu2b \
         --discovery-token-ca-cert-hash sha256:c61dd1a8c531adc26e5a84d066cc02a320ce9f90069ba4d502428abe07acc43a
 ```
-<br></br>
 
+<br></br>
 Eğer join tokeninizi kaybederseniz tekrar üretmeniz için bu komutu kullanabilirsiniz.
 ```
 sudo kubeadm token create --print-join-command
@@ -238,6 +235,7 @@ master-node   Ready    control-plane   101m   v1.26.3
 worker-node   Ready    <none>          94m    v1.26.3
 ```
 
+<br></br>
 # **ÖNEMLİ NOT:**
 
 eğer master-node makinesini kaptıp tekrar açtıysanız “kubectl get nodes” yazdığınızda hata alabilirsiniz.
