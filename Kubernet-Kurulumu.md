@@ -123,6 +123,7 @@ Normal kullanıcıya geçmeyi unutmayın! ####
 su - root
 containerd config default | tee /etc/containerd/config.toml
 sudo systemctl restart containerd
+sudo systemctl enable containerd
 exit
 ```
 
