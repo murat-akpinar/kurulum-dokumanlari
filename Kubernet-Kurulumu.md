@@ -98,7 +98,7 @@ sudo sysctl --system
 ```
 
 ---
-#### her iki sistem için : ilk önce paketleri güncelliyoruz. Unutmayın her iki sistemde uyguluyoruz bunları. ####
+#### her iki sistem için : ilk önce repoları güncelliyoruz ve upgrade yapıyoruz. Unutmayın her iki sistemde uyguluyoruz bunları. ####
 
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y
@@ -131,7 +131,6 @@ exit
 #### her iki sistem için : kubeadm kurulumu için repolarımıza kubernet ekliyoruz. ####
 
 ```bash
-sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
