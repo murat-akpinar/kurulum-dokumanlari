@@ -55,7 +55,7 @@ sudo ufw reload
 #### Her iki sistem için : swap alanlarını kapatıyoruz ####
 ```bash
 sudo swapoff -a
-sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo sed -i s/"[/]swap"/"#swap"/g /etc/fstab
 ```
 ---
 #### her iki sistem için : iptables bridged ayarları ####
