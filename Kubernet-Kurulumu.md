@@ -52,13 +52,13 @@ sudo ufw reload
 ```
 ---
 
-#### Her iki sistem için swap alanlarını kapatıyoruz ####
+#### Her iki sistem için : swap alanlarını kapatıyoruz ####
 ```bash
 sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
 ---
-#### her iki sistem için iptables bridged ayarları ####
+#### her iki sistem için : iptables bridged ayarları ####
 ```bash
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
@@ -73,7 +73,7 @@ sudo sysctl --system
 ```
 
 ---
-#### her iki sistem için containerd kurulumu ####
+#### her iki sistem için : containerd kurulumu ####
 
 ```bash
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
@@ -98,7 +98,7 @@ sudo sysctl --system
 ```
 
 ---
-#### her iki sistem için kurulum için ilk önce paketleri güncelliyoruz. Unutmayın her iki sistemde uyguluyoruz bunları. ####
+#### her iki sistem için : ilk önce paketleri güncelliyoruz. Unutmayın her iki sistemde uyguluyoruz bunları. ####
 
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y
@@ -109,14 +109,14 @@ sudo apt-get install containerd -y
 ```
 
 ---
-#### her iki sistem için containerd kurulduktan sonra bir dizin oluşturuyoruz ####
+#### her iki sistem için : containerd kurulduktan sonra bir dizin oluşturuyoruz ####
 
 ```bash
 sudo mkdir -p /etc/containerd
 ```
 
 ---
-#### her iki sistem için root kullanıcısına geçiyoruz ve bu adımı uyguluyoruz. Bu işlemi uyguladıktan sonra root kullanıcısından çıkın. 
+#### her iki sistem için : root kullanıcısına geçiyoruz ve bu adımı uyguluyoruz. Bu işlemi uyguladıktan sonra root kullanıcısından çıkın. 
 Normal kullanıcıya geçmeyi unutmayın! ####
 
 ```bash
@@ -127,7 +127,7 @@ exit
 ```
 
 ---
-#### her iki sistem için kubeadm kurulumu için repolarımıza kubernet ekliyoruz. ####
+#### her iki sistem için : kubeadm kurulumu için repolarımıza kubernet ekliyoruz. ####
 
 ```bash
 sudo apt-get update
@@ -137,7 +137,7 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 ```
 
 ---
-#### her iki sistem için sonra tekrar repoları güncelleyip yükleme işlemine geçiyoruz. ####
+#### her iki sistem için : sonra tekrar repoları güncelleyip yükleme işlemine geçiyoruz. ####
 
 ```bash
 sudo apt-get update
@@ -145,14 +145,14 @@ sudo apt-get install -y kubelet kubeadm kubectl
 ```
 
 ---
-#### her iki sistem için isteğe bağlı olarak bu paketlerin güncellemerlini kapataibliriz. ####
+#### her iki sistem için : isteğe bağlı olarak bu paketlerin güncellemerlini kapataibliriz. ####
 
 ```bash
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 ---
 
-# Buraya dikakt buradan sonra ki adımlar sadece master-node için uygulanacak adımlardır. #
+## Buraya dikakt buradan sonra ki adımlar sadece master-node için uygulanacak adımlardır. ##
 ```bash
 sudo kubeadm config images pull
 ```
