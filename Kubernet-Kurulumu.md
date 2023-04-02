@@ -64,12 +64,14 @@ sudo sed -i s/"[/]swap"/"#swap"/g /etc/fstab
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
 EOF
-
+```
+```bash
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
-
+```
+```bash
 sudo sysctl --system
 ```
 
@@ -77,24 +79,23 @@ sudo sysctl --system
 #### her iki sistem için : containerd kurulumu ####
 
 ```bash
+sudo modprobe overlay
+sudo modprobe br_netfilter
+```
+```bash
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
 overlay
 br_netfilter
 EOF
 ```
-
-```bash
-sudo modprobe overlay
-sudo modprobe br_netfilter
-```
-
 ```bash
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables  = 1
 net.ipv4.ip_forward                 = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
-
+```
+```bash
 sudo sysctl --system
 ```
 
