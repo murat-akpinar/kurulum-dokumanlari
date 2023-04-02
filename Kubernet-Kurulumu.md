@@ -142,8 +142,7 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 #### her iki sistem için : sonra tekrar repoları güncelleyip yükleme işlemine geçiyoruz. ####
 
 ```bash
-sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl
 ```
 
 ---
