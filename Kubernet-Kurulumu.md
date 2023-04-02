@@ -130,7 +130,7 @@ exit
 ```
 
 ---
-#### her iki sistem için : kubeadm kurulumu için repolarımıza kubernet ekliyoruz. ####
+#### her iki sistem için : kubeadm kurulumu için kubernet repolarını ekliyoruz. ####
 
 ```bash
 sudo apt-get install -y apt-transport-https ca-certificates curl
